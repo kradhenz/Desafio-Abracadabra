@@ -3,16 +3,11 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
-// 1. Crear un servidor con Express en el puerto 3000
-app.listen(port, () => {
-    console.log(`Servidor escuchando en el puerto ${port}`);
-});
-
 // 2. Definir la carpeta “assets” como carpeta pública del servidor
 app.use(express.static(path.join(__dirname, 'assets')));
 
 // 3. Crear un arreglo de nombres y devolverlo en formato JSON a través de la ruta /abracadabra/usuarios
-const usuarios = ['Juan', 'Jocelyn', 'Astrid', 'Maria', 'Ignacia','Javier', 'Brian'];
+const usuarios = ['Alice', 'Bob', 'Charlie', 'David'];
 
 app.get('/abracadabra/usuarios', (req, res) => {
     res.json(usuarios);
@@ -24,7 +19,7 @@ app.use('/abracadabra/juego/:usuario', (req, res, next) => {
     if (usuarios.includes(usuario)) {
         next();
     } else {
-        res.sendFile(path.join(__dirname, 'assets', 'who.jpeg'));
+        res.sendFile(path.join(__dirname, 'assets', 'img', 'who.jpeg'));
     }
 });
 
@@ -39,13 +34,18 @@ app.get('/abracadabra/conejo/:n', (req, res) => {
     const numeroAleatorio = Math.floor(Math.random() * 4) + 1; // Genera un número aleatorio entre 1 y 4
 
     if (numero === numeroAleatorio) {
-        res.sendFile(path.join(__dirname, 'assets', 'conejo.jpeg'));
+        res.sendFile(path.join(__dirname, 'assets', 'img', 'conejito.jpg'));
     } else {
-        res.sendFile(path.join(__dirname, 'assets', 'voldemort.jpeg'));
+        res.sendFile(path.join(__dirname, 'assets', 'img', 'voldemort.jpg'));
     }
 });
 
 // 6. Ruta genérica para manejar rutas no definidas
 app.use((req, res) => {
     res.status(404).send('Esta página no existe...');
+});
+
+// 1. Crear un servidor con Express en el puerto 3000
+app.listen(port, () => {
+    console.log(`Servidor escuchando en el puerto ${port}`);
 });
