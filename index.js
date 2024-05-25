@@ -35,7 +35,7 @@ app.get('/abracadabra/juego/:usuario', (req, res) => {
 // 5. Ruta para validar número aleatorio
 app.get('/abracadabra/conejo/:n', (req, res) => {
     const number = parseInt(req.params.n, 10); // caputrar el número desde la ruta
-    const random = Math.floor(Math.random() * 4) + 1; // Random between 1 and 4
+    const random = Math.floor(Math.random() * 4) + 1; // aleatorio entre 1 y 4
 
     if (number === random) {
         res.sendFile(__dirname + '/assets/img/conejito.jpg');
