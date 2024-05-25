@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "node index.js",
+    "start": "node --watch index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Tomás Inostroza Vilches",
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2"
